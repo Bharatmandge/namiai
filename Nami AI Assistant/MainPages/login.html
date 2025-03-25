@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <title>NamiAI Access Portal</title>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <style>
+        /* Existing CSS styles remain unchanged */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .ai-glow {
+            position: fixed;
+            width: 150vw;
+            height: 150vh;
+            background: radial-gradient(circle at 50% 50%, 
+                rgba(56, 189, 248, 0.15) 0%, 
+                transparent 60%);
+            animation: pulse 8s infinite;
+        }
+
+        .container {
+            position: relative;
+            width: 90%;
+            max-width: 480px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border-radius: 16px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+        }
+
+        .nami-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .nami-logo {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.4));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .nami-title {
+            color: #f8fafc;
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .nami-subtitle {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .input-group {
+            margin: 1.5rem 0;
+        }
+
+        .ai-input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #f8fafc;
+            font-size: 1rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .ai-input:focus {
+            outline: none;
+            border-color: #38bdf8;
+            box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+        }
+
+        .ai-input::placeholder {
+            color: #64748b;
+        }
+
+        .ai-button {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #38bdf8 0%, #6366f1 100%);
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .ai-button:hover {
+            transform: translateY(-1px);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            color: #64748b;
+            margin: 1.5rem 0;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 0 0.5rem;
+        }
+
+        .google-btn {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: #f8fafc;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .google-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .google-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        .access-link {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .access-link a {
+            color: #38bdf8;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.05); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.5rem;
+                border-radius: 12px;
+            }
+
+            .nami-logo {
+                width: 48px;
+                height: 48px;
+            }
+
+            .nami-title {
+                font-size: 1.75rem;
+            }
+
+            .input-group {
+                margin: 1.2rem 0;
+            }
+
+            .ai-input {
+                padding: 0.875rem;
+                font-size: 0.9rem;
+            }
+
+            .ai-button {
+                padding: 0.875rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ai-glow"></div>
+    
+    <div class="container">
+        <header class="nami-header">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZiI+PHBhdGggZD0iTTEyIDBDNS4zNzMgMCAwIDUuMzczIDAgMTJzNS4zNzMgMTIgMTIgMTIgMTItNS4zNzMgMTItMTJTMTguNjI3IDAgMTIgMHptMCAyMmMtNS41MjMgMC0xMC00LjQ3Ny0xMC0xMHM0LjQ3Ny0xMCAxMC0xMCAxMCA0LjQ3NyAxMCAxMC00LjQ3NyAxMC0xMCAxMHptLTIuMTQyLTcuMDgzYy0uMzY1LS4zMjYtLjQzOC0uODkzLS4xNjMtMS4yOThsMi43MjYtNC43MzdjLjI3NS0uNDA1Ljg2OC0uNDk4IDEuMjM4LS4xNzJsMS43ODggMS41ODRjLjM3LjMyOC40NDIuODk4LjE2IDEzLjI5OGwtMi43MjYgNC43MzdjLS4yNzUuNDA1LS44NjguNDk4LTEuMjM4LjE3MmwtMS43ODgtMS41ODR6Ii8+PC9zdmc+" 
+                 class="nami-logo" 
+                 alt="NamiAI Logo">
+            <h1 class="nami-title">NamiAI</h1>
+            <p class="nami-subtitle">Cognitive Computing Interface</p>
+        </header>
+
+        <main>
+            <form id="loginForm">
+                <div class="input-group">
+                    <input type="text" 
+                           class="ai-input" 
+                           placeholder="Username"
+                           required>
+                </div>
+                <div class="input-group">
+                    <input type="password" 
+                           class="ai-input" 
+                           placeholder="Password"
+                           required>
+                </div>
+                <button type="submit" class="ai-button">Initialize System</button>
+            </form>
+
+            <div class="divider">Or continue with</div>
+            <button class="google-btn" id="googleSignIn">
+                <svg class="google-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                    <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/>
+                    <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/>
+                    <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/>
+                    <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/>
+                </svg>
+                Sign in with Google
+            </button>
+        </main>
+
+        <footer class="access-link">
+            New researcher? <a href="Register.html">Request clearance</a>
+        </footer>
+    </div>
+
+    <script>
+        // Firebase Configuration - Replace with your actual config
+        const firebaseConfig = {
+            apiKey: "AIzaSyDFsS15946oARwL-H2pMx5MfSTF91jVuCM",
+            authDomain: "nami-ai-asistant.firebaseapp.com",
+            projectId: "nami-ai-asistant",
+            storageBucket: "nami-ai-asistant.firebasestorage.app",
+            messagingSenderId: "254077263011",
+            appId: "1:254077263011:web:ed1a8edbe8f49623a47316",
+            measurementId: "G-FH3JLN90F1"
+          };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const provider = new firebase.auth.GoogleAuthProvider();
+
+        // Google Sign-In Handler
+        document.getElementById('googleSignIn').addEventListener('click', (e) => {
+            e.preventDefault();
+            auth.signInWithPopup(provider)
+                .then((result) => {
+                    // Successful authentication
+                    console.log('User signed in:', result.user);
+                    window.location.href = 'main.html';
+                }).catch((error) => {
+                    console.error('Authentication error:', error);
+                    alert('Google authentication failed: ' + error.message);
+                });
+        });
+
+        // Basic Login System
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.getElementById('loginForm');
+            
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const username = form.querySelector('input[type="text"]').value;
+                const password = form.querySelector('input[type="password"]').value;
+                
+                if(username === 'bharat' && password === '1111') {
+                    window.location.href = 'main.html';
+                } else {
+                    alert('Authentication Failed: Invalid credentials');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

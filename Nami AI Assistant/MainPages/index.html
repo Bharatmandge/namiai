@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <title>Nami AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(to right, #000000, #06000c);
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 66px;
+            background: #000000;
+            z-index: 99;
+        }
+
+        .navbar {
+            height: 100%;
+            max-width: 1250px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .navbar .logo p {
+            font-size: 28px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        img {
+            width: 70px;
+            height: 50px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .links {
+            display: flex;
+            list-style: none;
+        }
+
+        .links li {
+            position: relative;
+            padding: 0 14px;
+        }
+
+        .links li a {
+            text-decoration: none;
+            color: rgba(198, 198, 198, 0.932);
+            font-size: 22px;
+            font-weight: 400;
+            white-space: nowrap;
+        }
+
+        .menu-toggle {
+            display: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .text {
+            position: relative;
+            top: 200px;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .to {
+            background: linear-gradient(to right, #6edff8, #7aeded);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            font-size: 40px;
+            font-weight: 400;
+            text-shadow: 0 0 4px #68c4fd, 0 0 1px #56bcec, 0 1px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            background: linear-gradient(to right, #4fb767, #5f2a95);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 38px;
+            line-height: 1.4;
+            margin: 0 auto;
+            max-width: 900px;
+        }
+
+        .button {
+            position: relative;
+            top: 250px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .button button {
+            background-color: #007BFF;
+            border: none;
+            color: white;
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .button button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                height: 60px;
+            }
+
+            .navbar {
+                padding: 0 15px;
+            }
+
+            .navbar .logo p {
+                font-size: 22px;
+            }
+
+            img {
+                width: 50px;
+                height: 35px;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 60px;
+                left: -100%;
+                background: #000;
+                width: 100%;
+                height: calc(100vh - 60px);
+                flex-direction: column;
+                transition: all 0.3s ease;
+                padding: 20px 0;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .links {
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+            }
+
+            .links li {
+                padding: 15px 0;
+            }
+
+            .links li a {
+                font-size: 18px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .text {
+                top: 140px;
+                padding: 0 15px;
+            } 
+
+            .to {
+                font-size: 32px;
+                margin-bottom: 15px;
+            }
+
+            h1 {
+                font-size: 24px;
+                line-height: 1.3;
+            }
+
+            .button {
+                top: 180px;
+                gap: 20px;
+                padding: 0 15px;
+            }
+
+            .button button {
+                width: 100%;
+                max-width: 280px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .text {
+                top: 120px;
+            }
+
+            .to {
+                font-size: 28px;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            .button {
+                top: 160px;
+            }
+
+            .button button {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+            <div class="logo">
+                <img src="logo.png.gif" alt="Nami AI Logo">
+                <p class="first">Nami AI</p>
+            </div>
+            <div class="nav-links">
+                <ul class="links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="login.html">Log-in</a></li>
+                    <li><a href="about.html">About us</a></li>
+                    <li><a href="contact.html">Contact us</a></li>
+                </ul>
+            </div>
+            <i class="fas fa-bars menu-toggle"></i>
+        </div>
+    </nav>
+
+    <div class="text">
+        <p class="to">MEET NAMI!</p>
+        <h1>Your intelligent companion, redefining the way you interact with technology—seamlessly, effortlessly, brilliantly.</h1>
+    </div>
+
+    <div class="button">
+        <a href="login.html"><button>Curious? Try Nami!</button></a>
+        <a href="about.html"><button class="one">About Nami!</button></a>
+    </div>
+
+    <script>
+        document.querySelector('.menu-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

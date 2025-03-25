@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Nami AI</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(to right, #000000, #06000c);
+        }
+
+        /* Original Navbar Styles with Responsive Additions */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 66px;
+            background: #000000;
+            z-index: 99;
+        }
+
+        nav .navbar {
+            height: 100%;
+            max-width: 1250px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: auto;
+            padding: 0 20px;
+        }
+
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .navbar .logo p {
+            font-size: 28px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .navbar .logo img {
+            width: 70px;
+            height: 50px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links .links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links .links li {
+            position: relative;
+            padding: 0 14px;
+        }
+
+        .nav-links .links li a {
+            height: 110%;
+            text-decoration: none;
+            white-space: nowrap;
+            color: rgba(198, 198, 198, 0.932);
+            font-size: 22px;
+            font-weight: 450;
+        }
+
+        .menu-toggle {
+            display: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Original Contact Container Styles */
+        .contact-container {
+            width: 100%;
+            max-width: 600px;
+            padding: 80px;
+            height: 600px;
+            background: linear-gradient(to right, #000000, #06000c);
+            text-align: center;
+            position: absolute;
+            top: 10%;
+            left: 35%;
+        }
+
+        .contact-container h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+            color: rgb(74, 176, 248);
+        }
+
+        .contact-container p {
+            font-size: 14px;
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+
+        .contact-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-container form input {
+            background-color: #222;
+            border: none;
+            border-radius: 4px;
+            padding: 20px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .contact-container form input:focus {
+            outline: none;
+            border: 1px solid #555;
+        }
+
+        .contact-container form button {
+            background-color: lightblue;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .contact-container form button:hover {
+            background-color: #87ceeb;
+        }
+
+        /* Mobile Responsive Additions Only */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 66px;
+                left: -100%;
+                background: #000;
+                width: 100%;
+                height: calc(100vh - 66px);
+                flex-direction: column;
+                transition: all 0.3s ease;
+                padding: 20px 0;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links .links {
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links .links li {
+                padding: 15px 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .navbar .logo img {
+                width: 50px;
+                height: 35px;
+            }
+
+            .navbar .logo p {
+                font-size: 20px;
+            }
+
+            .contact-container {
+                width: 90%;
+                left: 50%;
+                transform: translateX(-50%);
+                padding: 30px;
+                top: 15%;
+                height: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar .logo p {
+                font-size: 18px;
+            }
+
+            .navbar .logo img {
+                width: 40px;
+                height: 28px;
+            }
+
+            .contact-container {
+                padding: 20px;
+                top: 20%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="navbar">
+            <div class="logo">
+                <img src="logo.png.gif" alt="Nami AI Logo">
+                <p class="first">Nami AI</p>
+            </div>
+            <div class="nav-links">
+                <ul class="links">
+                    <li><a href="Index.html">Home</a></li>
+                    <li><a href="login.html">Log-in</a></li>  
+                    <li><a href="about.html">About us</a></li>
+                    <li><a href="contact.html">Contact us</a></li>
+                </ul>
+            </div>
+            <i class="fas fa-bars menu-toggle"></i>
+        </div>
+    </nav>
+    <div class="contact-container">
+        <h1>Contact Us</h1>
+        <p>Get in touch and we'll help you get started with NamiAI.</p>
+        <form>
+            <input type="email" placeholder="Work Email*" required>
+            <input type="url" placeholder="Company Website">
+            <input type="text" placeholder="First name">
+            <input type="text" placeholder="Last name">
+            <input type="text" placeholder="issue">
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.menu-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

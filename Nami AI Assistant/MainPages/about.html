@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About us</title>
+  <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #000000;
+      overflow-x: hidden;
+    }
+
+    /* Responsive Navbar */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 66px;
+      background: #000000;
+      z-index: 99;
+    }
+
+    .navbar {
+      height: 100%;
+      max-width: 1250px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    .navbar .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .navbar .logo img {
+      width: 60px;
+      height: 45px;
+      object-fit: contain;
+    }
+
+    .navbar .logo p {
+      font-size: 24px;
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+    }
+
+    .links {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+    }
+
+    .links li a {
+      color: rgba(198, 198, 198, 0.932);
+      font-size: 18px;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .links li a:hover {
+      color: #fff;
+    }
+
+    .menu-toggle {
+      display: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* Main Content */
+    .about {
+      margin-top: 100px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .hero-gif {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .text-container {
+      margin: 40px 0;
+      color: white;
+    }
+
+    .highlight {
+      font-weight: 600;
+      color: #00baff;
+    }
+
+    .blue {
+      color: #00baff;
+    }
+
+    .content-section {
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 20px;
+      color: white;
+    }
+
+    .content-container {
+      line-height: 1.8;
+      font-size: 1.1rem;
+    }
+
+    .cta-button {
+      background-color: #00baff;
+      color: #000;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 20px;
+    }
+
+    .cta-button:hover {
+      background-color: #009ed6;
+    }
+
+    .feature-gif {
+      width: 100%;
+      max-width: 600px;
+      margin: 40px auto;
+      display: block;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 0 15px;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 66px;
+        left: -100%;
+        background: #000;
+        width: 100%;
+        height: calc(100vh - 66px);
+        flex-direction: column;
+        transition: all 0.3s ease;
+        padding: 20px 0;
+      }
+
+      .nav-links.active {
+        left: 0;
+      }
+
+      .links {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .about {
+        margin-top: 80px;
+      }
+
+      .text-container {
+        font-size: 1.8rem;
+        margin: 20px 0;
+      }
+
+      .content-container {
+        font-size: 1rem;
+      }
+
+      .cta-button {
+        width: 100%;
+        padding: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .navbar .logo p {
+        font-size: 20px;
+      }
+
+      .text-container {
+        font-size: 1.5rem;
+      }
+
+      .content-section {
+        margin: 40px auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="navbar">
+      <div class="logo">
+        <img src="logo.png.gif" alt="Nami AI Logo">
+        <p>Nami AI</p>
+      </div>
+      <div class="nav-links">
+        <ul class="links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="login.html">Log-in</a></li>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="contact.html">Contact us</a></li>
+        </ul>
+      </div>
+      <i class="fas fa-bars menu-toggle"></i>
+    </div>
+  </nav>
+
+  <div class="about">
+    <img class="hero-gif" src="https://i.pinimg.com/originals/65/6e/b1/656eb1f06c2711587412c13e332a47ae.gif" alt="AI Visualization">
+    
+    <div class="text-container">
+      <h1><span class="highlight">Nami AI</span> gives AI the ability to <br>
+      <span class="blue">see</span>, <span class="blue">hear</span> and <span class="blue">speak</span></h1>
+    </div>
+
+    <div class="content-section">
+      <h2 class="highlight">We build AI to power the Future of Computing.</h2>
+      
+      <div class="content-container">
+        <p>
+          <strong>Nami AI</strong> is an innovative project spearheaded by <strong>our team</strong>, focusing on training an advanced assistant powered by AI. This project aims to revolutionize how we interact with technology by enabling <span class="highlight">voice search capabilities</span> and facilitating <span class="highlight">natural, human-like conversations</span> with the AI. Through Nami AI, users can experience seamless, real-time interactions and receive answers as if they were conversing with a real person.
+        </p>
+        <p>
+          <span class="highlight">Presented by Bharat Mandge</span>
+        </p>
+        <a href="/">
+          <button class="cta-button">
+            <span>🚀</span> Let's Try
+          </button>
+        </a>
+      </div>
+    </div>
+
+    <img class="feature-gif" src="https://i.pinimg.com/originals/60/92/4b/60924b514b8cb43e88a99dec7356a281.gif" alt="AI Feature">
+  </div>
+
+  <script>
+    document.querySelector('.menu-toggle').addEventListener('click', () => {
+      document.querySelector('.nav-links').classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
