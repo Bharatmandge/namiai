@@ -1,4 +1,4 @@
-const API_KEY = "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";
+const API_KEY = "PASTE YOUR GROQ API KEY HERE";
 let recognition;
 let synthesis;
 let isListening = false;
